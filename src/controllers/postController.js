@@ -45,58 +45,55 @@ class PostController{
         }
     };
 
-    // searchPostByName = async(req, res) =>{
-    //     try{
-    //         const {name} = req.params;
-    //         const Posts = await this.PostService.searchAutorByName(name);
-    //         if(Posts.lenght === 0){
-    //             return res.status(404).json({
-    //                 message: "Não encontrado",
-    //                 name: name,
-    //         });
-    //     }
-    //         res.status(200).json(Posts.map((Post) => new PostDTO(Post)));
-    //     }
-    //     catch(error){
-    //         res.status(500).send(error.message)
-    //     }
-    // };
+    searchPostByKeyword = async(req, res) =>{
+        try{
+            const {Keyword} = req.params;
+            const Posts = await this.PostService.searchPostByKeyword(Keyword);
+            if(Posts.lenght === 0){
+                return res.status(404).json({
+                    message: "Não encontrado",
+                    Title: Keyword,
+            });
+        }
+            res.status(200).json(Posts.map((Post) => new PostDTO(Post)));
+        }
+        catch(error){
+            res.status(500).send(error.message)
+        }
+    };
     
-    // updatePost = async (req, res) =>{
-    //     try{
-    //         const updatePost = await this.PostService.updatePost(req.params.id, req.body, {
-    //             new: true,
-    //         });
-    //         if (!updatePost){
-    //         return res.status(404).send("Post não encontrado")
-    //         }
-    
-    //         res.status(201).json({
-    //             message: "Post Criado com sucesso",
-    //             Posts: new PostDTO(updatePost),
-    //         }
-    //         )
-    //     }
-    //     catch(error){
-    //         res.status(500).send(error.message)
-    //     }
-    // }
+    updatePost = async (req, res) =>{
+        try{
+            const updatePost = await this.PostService.updatePost(req.params.id, req.body, {
+                new: true,
+            });
+            if (!updatePost){
+            return res.status(404).send("Post não encontrado")
+            }
+            res.status(201).json({
+                message: "Post Criado com sucesso",
+                Posts: new PostDTO(updatePost),
+            }
+            )
+        }
+        catch(error){
+            res.status(500).send(error.message)
+        }
+    }
 
-    // deletedPost = async (req, res) =>{
-    //     try{
-    //         const deletePost = await this.PostService.deletePost(req.params.id);
-    //         if (!deletePost){
-    //         return res.status(404).send("Post não encontrado")
-    //         }
-    
-    //         res.status(200).json("Autor deletado"
-    //         )
-    //     }
-    //     catch(error){
-    //         res.status(500).send(error.message)
-    //     }
-    // }
-    
+    deletedPost = async (req, res) =>{
+        try{
+            const deletePost = await this.PostService.deletePost(req.params.id);
+            if (!deletePost){
+            return res.status(404).send("Post não encontrado")
+            }
+            res.status(200).json("Autor deletado"
+            )
+        }
+        catch(error){
+            res.status(500).send(error.message)
+        }
+    }
     }
 
 

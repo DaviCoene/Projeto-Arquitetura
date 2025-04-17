@@ -6,9 +6,12 @@ export class PostRepository extends BaseRepository {
         super(post)
     }
 
-    async searchByTitle(Title){
+    async searchByKeyword(keyword){
         return await this.model.find({
-            Title: {$regex: Title, $options: "i"}
+            $or: [
+            {title: {$regex: keyword, $options: "i"}},
+            {description: {$regex: keyword, $options: "i"}},
+        ]
         })
     }
 }

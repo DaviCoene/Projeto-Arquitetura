@@ -14,6 +14,7 @@ export class AuthorService{
     getAllAuthor = async () => {
         return await this.AuthorRepository.findAll();
     }
+    
     getAuthorById = async (id) => {
         const foundAuthor = await this.AuthorRepository.findById(id);
         if (!foundAuthor){
