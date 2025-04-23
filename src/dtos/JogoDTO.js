@@ -4,7 +4,7 @@ export class JogoDTO{
         this.id = Jogo._id;
         this.titulo = Jogo.titulo;
         this.descricao = Jogo.descricao;
-        this.data_lançamento = Jogo.data_lançamento;
+        this.data_lancamento = Jogo.data_lancamento;
         this.preco = Jogo.preco;
         this.createdAt = Jogo.createdAt;
         this.updateAt = Jogo.updatedAt;
@@ -15,7 +15,8 @@ export class JogoDTO{
             id: body.id,
             titulo: body.titulo,
             descricao: body.descricao,
-            data_lançamento: body.data_lançamento,
+            data_lancamento: body.data_lancamento,
+            preco : body.preco
         };
     }
 }

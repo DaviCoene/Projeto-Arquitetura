@@ -1,53 +1,40 @@
 
-import { JogoRepository } from "../repositories/jogoRepository.js";
-import { JogoDTO } from "../dtos/JogoDTO.js";
+import {jogoRepository} from "../repositories/jogoRepository.js"
+import { JogoDTO } from "../dtos/jogoDTO.js";
 
 export class JogoService{
     constructor(){
-        this.JogoRepository = new JogoRepository();
+        this.jogoRepository = new jogoRepository();
     }
 
     createJogo = async (JogoData) => {
         const Jogo = JogoDTO.fromRequest(JogoData);
-        return await this.JogoRepository.create(Jogo);
+        return await this.jogoRepository.create(Jogo);
     }
     getAllJogo = async () => {
-        return await this.JogoRepository.findAll();
+        return await this.jogoRepository.findAll();
     }
     
-    // getJogoById = asy (id) => {
-    //     const foundJogo = await this.JogoRepository.findById(id);
-    //     if (!foundJogo){
-    //         throw new Error("Autor não encontrado!")
-    //     }
-    //     return foundJogo
-    // }
-    // updateJogo = async (id, JogoData) => {
-    //     const updatedJogo = await this.JogoRepository.update(id, JogoData);
-    //     if (!updatedJogo){
-    //         throw new Error("Autor não encontrado!")
-    //     }
-    //     return updatedJogo
-    // }
-    // deleteJogo = async (id) => {
-    //     const deleteJogo = await this.JogoRepository.delete(id);
-    //     if (!deleteJogo){
-    //         throw new Error("Autor não encontrado!")
-    //     }
-    //     return deleteJogo
-    // }
+    getJogoById = async (id) => {
+        const foundJogo = await this.jogoRepository.findById(id);
+        if (!foundJogo){
+            throw new Error("Jogo não encontrado!")
+        }
+        return foundJogo
+    }
+    updateJogo = async (id, JogoData) => {
+        const updatedJogo = await this.jogoRepository.update(id, JogoData);
+        if (!updatedJogo){
+            throw new Error("Jogo não encontrado!")
+        }
+        return updatedJogo
+    }
+    deleteJogo = async (id) => {
+        const deleteJogo = await this.jogoRepository.delete(id);
+        if (!deleteJogo){
+            throw new Error("Jogo não encontrado!")
+        }
+        return deleteJogo
+    }
 
-    // searchAutorByName = async (name) =>{
-    //     if(!name || name.trim() === ""){
-    //         throw new Error("Informar o nome do Autor")
-    //     }
-    //     return await this.JogoRepository.searchByName(name)
-    // }
-
-//     deleteAuthoor = async () => {
-//         return await this.JogoRepository 
-//     }
-//     searchAutorByName  = async () => {
-//         return await this.JogoRepository
-//     }
 }
