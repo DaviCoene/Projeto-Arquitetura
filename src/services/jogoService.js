@@ -8,8 +8,8 @@ export class JogoService{
     }
 
     createJogo = async (JogoData) => {
-        const Jogo = JogoDTO.fromRequest(JogoData);
-        return await this.jogoRepository.create(Jogo);
+        const jogo = JogoDTO.fromRequest(JogoData);
+        return await this.jogoRepository.create(jogo);
     }
     getAllJogo = async () => {
         return await this.jogoRepository.findAll();
@@ -23,11 +23,21 @@ export class JogoService{
         return foundJogo
     }
     updateJogo = async (id, JogoData) => {
-        const updatedJogo = await this.jogoRepository.update(id, JogoData);
+        let updatedJogo = {...JogoData};
+        if(JogoData.genero){
+            const foundgenero = await this.generoRepository.findById(JogoData.genero.id);
+            if (!foundgenero){
+                throw new Error("Jogo não encontrado");
+            };
+                updatedJogo.genero = {
+                    ...foundgenero._doc
+                };
+            
+        };
         if (!updatedJogo){
-            throw new Error("Jogo não encontrado!")
-        }
-        return updatedJogo
+            throw new Error("Jogo não encontrado!");
+        };
+        return updatedJogo;
     }
     deleteJogo = async (id) => {
         const deleteJogo = await this.jogoRepository.delete(id);

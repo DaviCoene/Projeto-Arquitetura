@@ -84,4 +84,4 @@ class JogoController{
     
     }
 
-export default new JogoController();
+export default JogoController;

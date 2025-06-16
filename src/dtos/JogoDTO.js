@@ -1,3 +1,4 @@
+
 //Data Transfer Object
 export class JogoDTO{
     constructor(Jogo){
@@ -6,6 +7,8 @@ export class JogoDTO{
         this.descricao = Jogo.descricao;
         this.data_lancamento = Jogo.data_lancamento;
         this.preco = Jogo.preco;
+        this.genero = Jogo.genero;
+        this.plataforma = Jogo.plataforma;
         this.createdAt = Jogo.createdAt;
         this.updateAt = Jogo.updatedAt;
     }
@@ -16,7 +19,9 @@ export class JogoDTO{
             titulo: body.titulo,
             descricao: body.descricao,
             data_lancamento: body.data_lancamento,
-            preco : body.preco
-        };
+            preco : body.preco,
+            genero: body.genero,
+            plataforma : body.plataforma
+        }
     }
 }
