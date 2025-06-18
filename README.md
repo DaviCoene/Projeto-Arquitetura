@@ -44,7 +44,7 @@ Criar uma API em js, com o objetivo de organizar os dados de jogos eletrônicos.
 ⸻
 
 ### 🧪 6. Testabilidade
-• jest.config.js presente → Ambiente de testes configurado
+
 • Cobertura futura de controllers e middleware
 
 # COMO EXECUTAR O PROJETO?
